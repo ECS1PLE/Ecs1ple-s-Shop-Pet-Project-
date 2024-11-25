@@ -11,10 +11,10 @@ interface Product {
 
 interface ProductsState {
   items: Product[];
-  favorites: number[]; // Список ID избранных товаров
+  favorites: number[];
   loading: boolean;
   error: string | null;
-  searchQuery: string; // Запрос для фильтрации
+  searchQuery: string;
 }
 
 const initialState: ProductsState = {
