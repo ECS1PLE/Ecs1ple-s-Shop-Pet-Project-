@@ -1,0 +1,8 @@
+@import "../../styles/colors";
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}

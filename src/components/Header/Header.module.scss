@@ -1,0 +1,22 @@
+@import "../../styles/colors";
+
+.header {
+  background-color: $primary;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: $white;
+  font-size: 24px;
+}
+
+.navLink {
+  color: $white;
+  margin-left: 15px;
+  &:hover {
+    color: $accent;
+  }
+}

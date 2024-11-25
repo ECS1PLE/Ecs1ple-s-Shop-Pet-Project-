@@ -1,0 +1,27 @@
+@import "../../styles/colors";
+
+.card {
+  background-color: $background;
+  color: $text;
+  padding: 20px;
+  border: 1px solid $primary;
+  border-radius: 10px;
+  max-width: 200px;
+  text-align: center;
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .title {
+    color: $primary;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .price {
+    color: $accent;
+    font-weight: bold;
+  }
+}
