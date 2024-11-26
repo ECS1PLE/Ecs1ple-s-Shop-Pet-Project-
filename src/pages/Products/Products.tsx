@@ -4,9 +4,11 @@ import { fetchProducts } from "../../features/reducers/productsThunk";
 import { RootState } from "../../store/store";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./Products.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { items, loading, error } = useSelector(
     (state: RootState) => state.products
   );
@@ -29,6 +31,10 @@ const Products = () => {
   const uniqueCategories = Array.from(
     new Set(items.map((product) => product.category))
   );
+
+  const handleProductClick = (productId: string) => {
+    navigate(`/product/${productId}`);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -58,7 +64,13 @@ const Products = () => {
       </div>
       <div className={styles.productsList}>
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <div
+            key={product.id}
+            onClick={() => handleProductClick(product.id)}
+            style={{ cursor: "pointer" }}
+          >
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </div>

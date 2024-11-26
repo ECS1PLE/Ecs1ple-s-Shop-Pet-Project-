@@ -8,6 +8,7 @@
   border-radius: 10px;
   max-width: 200px;
   text-align: center;
+  height: 450px;
 
   .image {
     width: 100%;
@@ -23,5 +24,9 @@
   .price {
     color: $accent;
     font-weight: bold;
+  }
+
+  :hover {
+    cursor: pointer;
   }
 }
