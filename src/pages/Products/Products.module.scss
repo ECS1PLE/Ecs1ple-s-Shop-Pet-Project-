@@ -1,8 +1,48 @@
 @import "../../styles/colors";
 
-.products {
+@import "../../styles/colors";
+
+.productsPage {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 0px;
+  outline: none;
+  height: 30px;
+  border-radius: 16px;
+}
+
+.categorySelect {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .productsList {
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: center;
+  }
 }
