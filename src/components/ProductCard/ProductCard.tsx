@@ -1,6 +1,16 @@
 import styles from "./ProductCard.module.scss";
 
-const ProductCard = ({ product }: { product: any }) => {
+interface Product {
+  image: string;
+  title: string;
+  price: number;
+}
+
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className={styles.card}>
       <img src={product.image} alt={product.title} className={styles.image} />

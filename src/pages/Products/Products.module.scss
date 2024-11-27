@@ -42,7 +42,10 @@
 
 @media (min-width: 1024px) {
   .productsList {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-content: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

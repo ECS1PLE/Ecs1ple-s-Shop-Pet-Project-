@@ -1,32 +1,24 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Products from "./pages/Products/Products";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import Home from "./pages/Home/Home";
-import Products from "./pages/Products/Products";
 import Header from "./components/Header/Header";
-import "../src/styles/global.scss";
+import Home from "./pages/Home/Home";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div className="app">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-            </Routes>
-          </main>
-        </div>
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
+        </Routes>
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;

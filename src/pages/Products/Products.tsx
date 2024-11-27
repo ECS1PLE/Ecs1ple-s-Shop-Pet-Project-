@@ -6,15 +6,30 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./Products.module.scss";
 import { useNavigate } from "react-router-dom";
 
-const Products = () => {
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  category: string;
+  image: string;
+}
+
+interface ProductsState {
+  items: Product[];
+  loading: boolean;
+  error: string | null;
+}
+
+const Products: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { items, loading, error } = useSelector(
-    (state: RootState) => state.products
+
+  const { items, loading, error } = useSelector<RootState, ProductsState>(
+    (state) => state.products
   );
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [categoryFilter, setCategoryFilter] = useState<string>("");
 
   useEffect(() => {
     dispatch(fetchProducts());
