@@ -49,3 +49,20 @@
     margin-right: auto;
   }
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.productCount {
+  display: flex;
+  justify-content: center;
+}
+
+.addToCartButton {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-top: 20px;
+}

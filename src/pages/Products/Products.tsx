@@ -30,6 +30,8 @@ const Products: React.FC = () => {
 
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  const [sortBy, setSortBy] = useState<string>("");
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -41,7 +43,17 @@ const Products: React.FC = () => {
     )
     .filter((product) =>
       categoryFilter ? product.category === categoryFilter : true
-    );
+    )
+    .filter(
+      (product) =>
+        product.price >= priceRange[0] && product.price <= priceRange[1]
+    )
+    .sort((a, b) => {
+      if (sortBy === "price-asc") return a.price - b.price;
+      if (sortBy === "price-desc") return b.price - a.price;
+      if (sortBy === "title") return a.title.localeCompare(b.title);
+      return 0;
+    });
 
   const uniqueCategories = Array.from(
     new Set(items.map((product) => product.category))
@@ -49,6 +61,10 @@ const Products: React.FC = () => {
 
   const handleProductClick = (productId: string) => {
     navigate(`/product/${productId}`);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    console.log(`Товар ${product.title} добавлен в корзину.`);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -76,7 +92,18 @@ const Products: React.FC = () => {
             </option>
           ))}
         </select>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className={styles.sortSelect}
+        >
+          <option value="">Сортировать по</option>
+          <option value="price-asc">Цена: по возрастанию</option>
+          <option value="price-desc">Цена: по убыванию</option>
+          <option value="title">Название</option>
+        </select>
       </div>
+
       <div className={styles.productsList}>
         {filteredProducts.map((product) => (
           <div
@@ -84,7 +111,16 @@ const Products: React.FC = () => {
             onClick={() => handleProductClick(product.id)}
             style={{ cursor: "pointer" }}
           >
-            <ProductCard product={product} />
+            <ProductCard product={product}></ProductCard>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddToCart(product);
+              }}
+              className={styles.addToCartButton}
+            >
+              Добавить в корзину
+            </button>
           </div>
         ))}
       </div>
